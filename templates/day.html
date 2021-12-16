@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Daily Error Summary</title>
+
+		<link href="entireframework.min.css" rel="stylesheet" type="text/css">
+		<link href="custom.css" rel="stylesheet" type="text/css">
+
+	</head>
+	<body>
+		<nav class="nav" tabindex="-1" onclick="this.focus()">
+			<div class="container">
+				<a class="pagename current" href="#">Daily Error Summary</a>
+                            <button class="btn-toggle btn btn-sm">Light/Dark</button>
+			</div>
+		</nav>
+		<div class="container">
+                    {% for run in summary %}
+                    <h2>Run {{ run["run_name"] }} </h2>
+
+                        {% for message_key, message_labels in run["messages"].items() %}
+                        <em>{{ message_key }}</em>
+                        <p>
+                        <ul>
+                            {% for label in message_labels %}
+                            <li>{{ label }}
+                            {% endfor %}
+                        </ul>
+                        </p>
+                        {% endfor %}
+                    {% endfor %}
+		</div>
+                <script>
+
+                const btn = document.querySelector(".btn-toggle");
+                const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+                btn.addEventListener("click", function () {
+                  if (prefersDarkScheme.matches) {
+                    document.body.classList.toggle("light-theme");
+                  } else {
+                    document.body.classList.toggle("dark-theme");
+                  }
+                });
+
+
+                </script>
+	</body>
+</html>

@@ -1,0 +1,58 @@
+
+h2 {
+    margin: 1.0em 0;
+    border-bottom: 3px solid;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+body {
+  --text-color: #222;
+  --bkg-color: #fff;
+}
+/* Dark theme colors */
+body.dark-theme {
+  --text-color: #eee;
+  --bkg-color: #121212;
+}
+
+/* Styles for users who prefer dark mode at the OS level */
+@media (prefers-color-scheme: dark) {
+  /* defaults to dark theme */
+  body {
+    --text-color: #eee;
+    --bkg-color: #121212;
+  }
+  /* Override dark mode with light mode styles if the user decides to swap */
+  body.light-theme {
+    --text-color: #222;
+    --bkg-color: #fff;
+  }
+}
+
+body {
+  background: var(--bkg-color);
+}
+
+h1,
+h2,
+h3,
+body,
+p {
+  color: var(--text-color);
+}
+
+/*
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #eee;
+    background: #121212;
+  }
+
+  body a {
+    color: #809fff;
+  }
+}
+
+*/
