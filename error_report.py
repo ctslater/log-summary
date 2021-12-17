@@ -41,7 +41,7 @@ def parse_logs_into_summary(logs):
 
     output_by_run = []
     for run_name, logs in runs.items():
-        messages = defaultdict(list)
+        messages = defaultdict(set)
         for log in logs:
             message = log["jsonPayload"]["message"]
             label = log["jsonPayload"]["MDC"]["LABEL"]
@@ -49,7 +49,7 @@ def parse_logs_into_summary(logs):
             if(msg_key is None):
                 msg_key = message
 
-            messages[msg_key].append(label)
+            messages[msg_key].add(label)
 
         output = {"run_name": run_name,
                   "messages": messages}

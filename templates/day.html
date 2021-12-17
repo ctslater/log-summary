@@ -22,7 +22,7 @@
                     <h2>Run {{ run["run_name"] }} </h2>
 
                         {% for message_key, message_labels in run["messages"].items() %}
-                        <em>{{ message_key }}</em>
+                        <p>{{ message_key }}</p>
                         <p>
                         <ul>
                             {% for label in message_labels %}
