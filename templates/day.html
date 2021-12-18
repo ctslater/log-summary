@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Daily Error Summary</title>
+                <title>Daily Error Summary {{ date_string }}</title>
 
 		<link href="entireframework.min.css" rel="stylesheet" type="text/css">
 		<link href="custom.css" rel="stylesheet" type="text/css">
@@ -13,7 +13,7 @@
 	<body>
 		<nav class="nav" tabindex="-1" onclick="this.focus()">
 			<div class="container">
-				<a class="pagename current" href="#">Daily Error Summary</a>
+                            <a class="pagename current" href="#">Daily Error Summary {{ date_string }}</a>
                             <button class="btn-toggle btn btn-sm">Light/Dark</button>
 			</div>
 		</nav>

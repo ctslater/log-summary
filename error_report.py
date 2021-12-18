@@ -89,10 +89,12 @@ def download_logs(bucket, prefix, year, month, day):
     return logs
 
 
-def format_html(summary):
+def format_html(summary, date):
 
     template = jinja_env.get_template("day.html")
-    return template.render(summary=summary)
+    return template.render(summary=summary, date_string="{:4d}-{:02d}-{:02d}".format(date.year,
+                                                                                     date.month,
+                                                                                     date.day))
 
 
 if __name__ == "__main__":
@@ -161,4 +163,4 @@ if __name__ == "__main__":
         output_filename = os.path.join(args.output_dir, output_filename)
 
     with open(output_filename, "w") as f:
-        f.write(format_html(summary))
+        f.write(format_html(summary, search_time))
