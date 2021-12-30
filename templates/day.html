@@ -18,6 +18,7 @@
 			</div>
 		</nav>
 		<div class="container">
+                    {% set list_count = namespace(value=0) %}
                     {% for run in summary %}
                     <h2>Run {{ run["run_name"] }} </h2>
 
@@ -26,27 +27,45 @@
                         <p>
                         <ul>
                             {% for label in message_labels %}
-                            <li>{{ label }}
+                            <li class="{{ ('hidden hidden-%d') % list_count.value if loop.index > 10}}">{{ label }}
+
+                            {% if(loop.index == 10) %}
+                            <li><a href="javascript:;" onclick="javascript:unhide('{{'hidden-%d' % list_count.value}}', this)">And {{ message_labels|count - 10 }} more dataIds</a>
+                            {% endif %}
+
+
                             {% endfor %}
                         </ul>
                         </p>
+                        {% set list_count.value = list_count.value + 1 %}
                         {% endfor %}
                     {% endfor %}
 		</div>
-                <script>
+<script>
 
-                const btn = document.querySelector(".btn-toggle");
-                const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+const btn = document.querySelector(".btn-toggle");
+const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 
-                btn.addEventListener("click", function () {
-                  if (prefersDarkScheme.matches) {
-                    document.body.classList.toggle("light-theme");
-                  } else {
-                    document.body.classList.toggle("dark-theme");
-                  }
-                });
+btn.addEventListener("click", function () {
+  if (prefersDarkScheme.matches) {
+    document.body.classList.toggle("light-theme");
+  } else {
+    document.body.classList.toggle("dark-theme");
+  }
+});
+
+function unhide(classname, clickedElement) {
+    var hiddenElements = document.getElementsByClassName(classname);
+    for(var i = 0; i < hiddenElements.length; i++)
+    {
+            hiddenElements.item(i).classList.remove('hidden');
+    }
+    clickedElement.closest('li').classList.add('hidden');
+    return false;
+
+}
 
 
-                </script>
+</script>
 	</body>
 </html>

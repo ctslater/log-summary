@@ -17,6 +17,16 @@ body.dark-theme {
   --bkg-color: #121212;
 }
 
+
+.hidden {
+    display: none;
+}
+
+a {
+  color: var(--text-color);
+  font-weight: bold;
+}
+
 /* Styles for users who prefer dark mode at the OS level */
 @media (prefers-color-scheme: dark) {
   /* defaults to dark theme */
